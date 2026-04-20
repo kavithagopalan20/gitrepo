@@ -1,0 +1,26 @@
+def get_duplicate_report(data_list):
+    counts = {}
+    duplicates = {}
+    
+    for item in data_list:
+        # Increment count for each item found
+        counts[item] = counts.get(item, 0) + 1
+    
+    # Filter only items that appeared more than once
+    for item, count in counts.items():
+        if count > 1:
+            duplicates[item] = count
+            
+    return duplicates
+
+# Execution
+user_input = input("Enter items separated by commas: ")
+user_list =[item.strip() for item in user_input.split(",")]
+report = get_duplicate_report(user_list)
+
+if report:
+    print("Bug Found! Duplicate entries detected:")
+    for item, count in report.items():
+        print(f" - '{item}' appears {count} times")
+else:
+    print("Pass: No duplicates found.")
